@@ -6,12 +6,16 @@
   ...
 }
 : {
-  imports = [./hardware ./dev ./displaymanagers];
-
-  # User Defined Options
-  systemOptions.windowManager = "plasma";
+  imports = [
+    ./hardware
+    ./dev
+    ./windowmanagers
+  ];
 
   # Default Options (make into modules later)
+
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
 
   # Bootloader.
   boot.loader = {
@@ -128,6 +132,8 @@
     flameshot
     fish
     xclip
+
+    kitty
 
     # CLI Tools
     git

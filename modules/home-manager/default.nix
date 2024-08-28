@@ -11,6 +11,8 @@ with lib; let
 in {
   ###
   imports = [
+    ./windowmanagers
+
     ./dev/tmux.nix
     ./alacritty.nix
   ];

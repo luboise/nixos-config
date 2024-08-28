@@ -17,6 +17,11 @@ with lib; let
     then throw "Invalid window manager received: " + manager + ". Expected one of " + toString windowManagers
     else {};
 in {
+  imports = [
+    ./hyprland.nix
+    ./plasma.nix
+  ];
+
   options.systemOptions.windowManager = mkOption {
     type = types.str;
     default = "";
@@ -25,9 +30,4 @@ in {
   };
 
   options.systemOptions.throwables = validateWindowManager;
-
-  imports = [
-    ./hyprland.nix
-    ./plasma.nix
-  ];
 }

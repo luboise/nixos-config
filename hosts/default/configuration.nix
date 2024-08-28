@@ -9,5 +9,9 @@
 
     ../../modules/nixos
   ];
+
+  # User Defined Options
+  systemOptions.windowManager = "plasma";
+
   system.stateVersion = "24.05"; # Did you read the comment?
 }
