@@ -36,7 +36,7 @@
       ];
     };
 
-    nixosConfigurations.home = nixpkgs.lib.nixosSystem rec {
+    nixosConfigurations.home-desktop = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
 
       specialArgs = {
