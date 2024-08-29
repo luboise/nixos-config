@@ -53,6 +53,7 @@ in {
 
     steam
     discord
+    vesktop
 
     falkon
     chromium
@@ -127,6 +128,23 @@ in {
               				else
                   				echo "No IP address found for enp46s0"
               				end'';
+      };
+
+      openbg = {
+        body = ''
+          # Check if a command was provided
+              if test (count $argv) -eq 0
+                  echo "Usage: bgcmd <command>"
+                  return 1
+              end
+
+              # Run the command in the background
+              command $argv &
+
+              # Get the PID of the last background process and disown it
+              set pid $last_pid
+              disown $pid
+        '';
       };
 
       ssh-home = {

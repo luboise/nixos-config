@@ -39,6 +39,7 @@
         # exec-once = waybar & hyprpaper & firefox
         exec-once = [
           "clipse -listen"
+          "vesktop"
         ];
 
         #############################
@@ -175,6 +176,11 @@
 
         # See https://wiki.hyprland.org/Configuring/Keywords/
         "$mainMod" = "SUPER"; # Sets "Windows" key as main modifier
+
+        workspace = [
+          "name:1, monitor:DP-2"
+          "name:2, monitor:DP-1"
+        ];
 
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         bind = [
