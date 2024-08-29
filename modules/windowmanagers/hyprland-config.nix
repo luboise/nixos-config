@@ -1,5 +1,10 @@
-{config, ...}: {
-  config = {
+{
+  inputs,
+  config,
+  ...
+}:
+with inputs; {
+  home-manager.users.lucasjr = {
     wayland.windowManager.hyprland = {
       enable = true;
 
@@ -25,7 +30,7 @@
         # Set programs that you use
         "$terminal" = "alacritty";
         "$fileManager" = "dolphin";
-        "$menu" = "wofi --show drun";
+        "$menu" = "rofi --show drun";
 
         #################
         ### AUTOSTART ###
@@ -81,11 +86,11 @@
 
         # https://wiki.hyprland.org/Configuring/Variables/#decoration
         decoration = {
-          rounding = 10;
+          rounding = 2;
 
           # Change transparency of focused and unfocused windows
           active_opacity = 1.0;
-          inactive_opacity = 1.0;
+          inactive_opacity = 0.85;
 
           drop_shadow = true;
           shadow_range = 4;
@@ -108,7 +113,10 @@
 
           # Default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
 
-          bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+          bezier = [
+            "myBezier, 0.05, 0.9, 0.1, 1.05"
+            "overshootBezier, 1, 0, 0, 1"
+          ];
 
           animation = [
             "windows, 1, 7, myBezier"
@@ -116,7 +124,7 @@
             "border, 1, 10, default"
             "borderangle, 1, 8, default"
             "fade, 1, 7, default"
-            "workspaces, 1, 6, default"
+            "workspaces, 1, 6, overshootBezier"
           ];
         };
 
@@ -154,7 +162,7 @@
           sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
 
           touchpad = {
-            natural_scroll = false;
+            natural_scroll = true;
           };
         };
 

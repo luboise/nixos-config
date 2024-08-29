@@ -9,7 +9,9 @@
   imports = [
     ./hardware
     ./dev
+    ./terminals
     ./windowmanagers
+    ./basehome.nix
   ];
 
   # Default Options (make into modules later)
@@ -129,6 +131,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    pkgs-stable.home-manager
+
     # Handy Apps
     flameshot
     fish

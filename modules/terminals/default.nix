@@ -1,5 +1,5 @@
 {...}: {
   imports = [
-    ./hyprland-config.nix
+    ./alacritty.nix
   ];
 }

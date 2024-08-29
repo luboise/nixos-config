@@ -7,9 +7,10 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # home-manager.url = "github:luboise/homemanager-config";
   };
 
   # PUT
@@ -19,37 +20,17 @@
     nixpkgs-stable,
     home-manager,
     ...
-  } @ inputs: {
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem rec {
-      system = "x86_64-linux";
-
-      specialArgs = {
-        inherit inputs;
-
-        pkgs-stable = import nixpkgs-stable {
-          inherit system;
-          config.allowUnfree = true;
-        };
-      };
-      modules = [
-        ./hosts/default/configuration.nix
-      ];
+  } @ inputs: let
+    args = {inherit inputs home-manager nixpkgs nixpkgs-stable;};
+  in rec {
+    nixosConfigurations = {
+      laptop-aorus = import ./hosts/laptop-aorus args;
+      home-desktop = import ./hosts/home-desktop args;
     };
 
-    nixosConfigurations.home-desktop = nixpkgs.lib.nixosSystem rec {
-      system = "x86_64-linux";
-
-      specialArgs = {
-        inherit inputs;
-
-        pkgs-stable = import nixpkgs-stable {
-          inherit system;
-          config.allowUnfree = true;
-        };
-      };
-      modules = [
-        ./hosts/home-desktop/configuration.nix
-      ];
+    homeConfigurations = {
+      home-desktop = nixosConfigurations.home-desktop.config.home-manager.users.lucasjr.home;
+      laptop-aorus = nixosConfigurations.laptop-aorus.config.home-manager.users.lucasjr.home;
     };
   };
 }

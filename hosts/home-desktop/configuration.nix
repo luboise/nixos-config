@@ -5,9 +5,9 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./home.nix
+    # ./home.nix
 
-    ../../modules/nixos
+    ../../modules
   ];
 
   # User Defined Options

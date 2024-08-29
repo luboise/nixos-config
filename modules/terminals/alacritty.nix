@@ -13,7 +13,7 @@ with lib; {
   };
 
   config = mkIf config.hm.alacritty.enable {
-    programs.alacritty = {
+    home-manager.users.lucasjr.programs.alacritty = {
       enable = true;
 
       settings = {
