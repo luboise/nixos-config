@@ -11,7 +11,7 @@
   ];
 
   # User Defined Options
-  systemOptions.windowManager = "plasma";
+  systemOptions.windowManager = "hyprland";
 
   system.stateVersion = "24.05"; # Did you read the comment?
 }
