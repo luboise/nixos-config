@@ -1,16 +1,31 @@
-nixosConfigurations.home-desktop = nixpkgs.lib.nixosSystem rec {
-      system = "x86_64-linux";
+{
+  inputs,
+  nixpkgs,
+  nixpkgs-stable,
+  home-manager,
+  ...
+}:
+nixpkgs.lib.nixosSystem rec {
+  system = "x86_64-linux";
 
-      specialArgs = {
-        inherit inputs;
-
-        pkgs-stable = import nixpkgs-stable {
-          inherit system;
-          config.allowUnfree = true;
-        };
-      };
-      modules = [
-        ./hosts/home-desktop/configuration.nix
-        # home-manager.nixosModules.home-manager
-      ];
+  specialArgs = {
+    inherit inputs home-manager;
+    pkgs-stable = import nixpkgs-stable {
+      inherit system;
+      config.allowUnfree = true;
     };
+  };
+
+  modules = [
+    home-manager.nixosModules.home-manager
+    ../../modules
+    {
+      # User Defined Options
+      systemOptions.windowManager = "hyprland";
+
+      system.stateVersion = "24.05"; # Did you read the comment?
+
+      imports = [./hardware-configuration.nix];
+    }
+  ];
+}
