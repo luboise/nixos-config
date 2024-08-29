@@ -45,6 +45,7 @@ with inputs; {
         exec-once = [
           "clipse -listen"
           "vesktop"
+          "eww daemon"
         ];
 
         #############################
@@ -266,5 +267,10 @@ with inputs; {
     };
 
     programs.waybar.enable = true;
+
+    # programs.rofi.enable = true;
+    programs.eww.enable = true;
+    programs.eww.enableFishIntegration = true;
+    programs.eww.configDir = ./eww;
   };
 }
