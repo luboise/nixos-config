@@ -21,7 +21,7 @@ nixpkgs.lib.nixosSystem rec {
     ../../modules
     {
       # User Defined Options
-      systemOptions.windowManager = "hyprland";
+      systemOptions.windowManager = "plasma";
 
       system.stateVersion = "24.05"; # Did you read the comment?
 

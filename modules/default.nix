@@ -11,6 +11,8 @@
     ./dev
     ./terminals
     ./windowmanagers
+    ./services
+
     ./basehome.nix
   ];
 
@@ -19,7 +21,10 @@
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
 
-  # Bootloader.
+  tmux.enable = true;
+  mysql.enable = true;
+
+  # Bootloader
   boot.loader = {
     systemd-boot.enable = false;
 
@@ -170,9 +175,6 @@
     valgrind
     gdb
     cppcheck
-
-    tmux
-    tmuxp
 
     python3
 
