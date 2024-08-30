@@ -1,8 +1,6 @@
 {
-  config,
   pkgs,
   pkgs-stable,
-  inputs,
   ...
 }
 : {
@@ -16,13 +14,19 @@
     ./basehome.nix
   ];
 
+  tmux.enable = true;
+  mysql.enable = true;
+  godot.enable = true;
+  exercism.enable = true;
+
+  dev.languages = {
+    elixir.enable = true;
+  };
+
   # Default Options (make into modules later)
 
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
-
-  tmux.enable = true;
-  mysql.enable = true;
 
   # Bootloader
   boot.loader = {
@@ -137,6 +141,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # pkgs-stable.home-manager
+
+    conda
 
     # Handy Apps
     flameshot
