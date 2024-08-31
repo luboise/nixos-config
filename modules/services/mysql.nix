@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  pkgs-stable,
+  pkgs,
   ...
 }:
 with lib; {
@@ -10,7 +10,8 @@ with lib; {
   config = mkIf config.mysql.enable {
     services.mysql = {
       enable = true;
-      package = pkgs-stable.mysql;
+      package = pkgs.mariadb;
+      replication.masterPort = 3306;
     };
   };
 }

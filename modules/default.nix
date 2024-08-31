@@ -5,11 +5,12 @@
 }
 : {
   imports = [
+    ./services
+
     ./hardware
     ./dev
     ./terminals
     ./windowmanagers
-    ./services
 
     ./basehome.nix
   ];
@@ -19,8 +20,17 @@
   godot.enable = true;
   exercism.enable = true;
 
-  dev.languages = {
-    elixir.enable = true;
+  dev = {
+    prisma = {
+      enable = true;
+      databases = {
+        open-magnate.enable = true;
+      };
+    };
+
+    languages = {
+      elixir.enable = true;
+    };
   };
 
   # Default Options (make into modules later)
@@ -135,12 +145,16 @@
       fi
     '';
   };
+
   programs.fish.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # pkgs-stable.home-manager
+    lua
+
+    tree-sitter
 
     conda
 

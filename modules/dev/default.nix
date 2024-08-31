@@ -6,5 +6,6 @@
     ./prisma.nix
     ./godot.nix
     ./exercism.nix
+    ./neovim.nix
   ];
 }

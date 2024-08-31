@@ -10,6 +10,7 @@ with lib; {
   config = mkIf config.dev.languages.elixir.enable {
     environment.systemPackages = with pkgs; [
       elixir
+      elixir-ls
     ];
   };
 }
