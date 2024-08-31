@@ -1,5 +1,5 @@
 {
-  pkgs,
+  pkgs-stable,
   lib,
   config,
   ...
@@ -72,7 +72,7 @@ in {
     #)}'
     #'';
 
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = with pkgs-stable; [
       # For Prisma:
       nodePackages_latest.pnpm
       nodePackages_latest.vercel
@@ -81,7 +81,7 @@ in {
       nodejs
     ];
 
-    environment.sessionVariables = with pkgs; {
+    environment.sessionVariables = with pkgs-stable; {
       # Prisma:
       PRISMA_QUERY_ENGINE_LIBRARY = "${prisma-engines}/lib/libquery_engine.node";
       PRISMA_QUERY_ENGINE_BINARY = "${prisma-engines}/bin/query-engine";
