@@ -6,7 +6,7 @@
 : {
   imports = [
     ./services
-
+    ./shells
     ./hardware
     ./dev
     ./terminals
@@ -19,6 +19,7 @@
   mysql.enable = true;
   godot.enable = true;
   exercism.enable = true;
+  fish.enable = true;
 
   dev = {
     prisma = {
@@ -136,6 +137,9 @@
 
   programs.firefox.enable = true;
 
+  # This is enabled on a per shell basis
+  programs.direnv.enable = true;
+
   programs.bash = {
     interactiveShellInit = ''
       if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
@@ -176,8 +180,8 @@
     fd
     fzf
 
-    pkgs-stable.rustc
-    pkgs-stable.cargo
+    rustc
+    cargo
 
     _1password-gui
 

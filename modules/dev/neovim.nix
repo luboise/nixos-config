@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
+    ghc
+  ];
+
   home-manager.users.lucasjr = {
     programs.neovim = {
       enable = true;
@@ -20,6 +24,9 @@
 
         # Elixir
         elixir-ls
+
+        # Haskell
+        haskell-language-server
       ];
     };
   };

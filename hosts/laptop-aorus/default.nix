@@ -2,6 +2,7 @@
   inputs,
   nixpkgs,
   nixpkgs-stable,
+  nixpkgs-future,
   home-manager,
   ...
 }:
@@ -11,6 +12,10 @@ nixpkgs.lib.nixosSystem rec {
   specialArgs = {
     inherit inputs home-manager;
     pkgs-stable = import nixpkgs-stable {
+      inherit system;
+      config.allowUnfree = true;
+    };
+    pkgs-future = import nixpkgs-future {
       inherit system;
       config.allowUnfree = true;
     };

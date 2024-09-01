@@ -1,5 +1,5 @@
 {
-  pkgs-stable,
+  pkgs-future,
   lib,
   config,
   ...
@@ -72,20 +72,20 @@ in {
     #)}'
     #'';
 
-    environment.systemPackages = with pkgs-stable; [
+    environment.systemPackages = with pkgs-future; [
       # For Prisma:
-      nodePackages_latest.pnpm
-      nodePackages_latest.vercel
       nodePackages_latest.prisma
       openssl
-      nodejs
     ];
 
-    environment.sessionVariables = with pkgs-stable; {
+    environment.sessionVariables = with pkgs-future; {
       # Prisma:
       PRISMA_QUERY_ENGINE_LIBRARY = "${prisma-engines}/lib/libquery_engine.node";
       PRISMA_QUERY_ENGINE_BINARY = "${prisma-engines}/bin/query-engine";
       PRISMA_SCHEMA_ENGINE_BINARY = "${prisma-engines}/bin/schema-engine";
+      PRISMA_MIGRATION_ENGINE_BINARY = "${prisma-engines}/bin/schema-engine";
+      PRISMA_INTROSPECTION_ENGINE_BINARY = "${prisma-engines}/bin/introspection-engine";
+      PRISMA_FMT_BINARY = "${prisma-engines}/bin/prisma-fmt";
     };
   };
 }
