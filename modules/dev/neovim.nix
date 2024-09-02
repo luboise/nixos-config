@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     ghc
+    stack
+    haskellPackages.fourmolu
   ];
 
   home-manager.users.lucasjr = {

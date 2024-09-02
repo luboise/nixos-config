@@ -14,6 +14,7 @@
 
         steam
         discord
+        armcord
         vesktop
 
         falkon
