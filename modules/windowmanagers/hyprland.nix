@@ -4,8 +4,6 @@
   pkgs,
   ...
 }: {
-  imports = [./hyprland-config.nix];
-
   config = lib.mkIf (config.systemOptions.windowManager == "hyprland") {
     programs.hyprland.enable = true;
 

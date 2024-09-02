@@ -22,17 +22,37 @@
     nixpkgs-future,
     home-manager,
     ...
-  } @ inputs: let
-    args = {inherit inputs home-manager nixpkgs nixpkgs-stable nixpkgs-future;};
-  in rec {
+  } @ inputs: rec {
     nixosConfigurations = {
-      laptop-aorus = import ./hosts/laptop-aorus args;
-      home-desktop = import ./hosts/home-desktop args;
+      home-pc = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+
+        specialArgs = {
+          inherit inputs home-manager;
+          pkgs-stable = import nixpkgs-stable {
+            inherit system;
+            config.allowUnfree = true;
+          };
+          pkgs-future = import nixpkgs-future {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        };
+
+        modules = [
+          home-manager.nixosModules.home-manager
+          ./home-pc/configuration.nix
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.asad = import ./home-pc/home.nix;
+          }
+        ];
+      };
     };
 
     homeConfigurations = {
-      home-desktop = nixosConfigurations.home-desktop.config.home-manager.users.lucasjr.home;
-      laptop-aorus = nixosConfigurations.laptop-aorus.config.home-manager.users.lucasjr.home;
+      home-pc = nixosConfigurations.home-desktop.config.home-manager.users.asad.home;
     };
   };
 }
